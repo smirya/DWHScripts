@@ -1,14 +1,19 @@
-USE [AdventureWorksDWH];
+USE [AdventureWorksDWH]
+GO
+
+/****** Object:  StoredProcedure [dbo].[ssp_FactInternetSales_create_table]    Script Date: 6/11/2024 10:15:06 AM ******/
 SET ANSI_NULLS ON
 GO
+
 SET QUOTED_IDENTIFIER ON
 GO
+
 -- =============================================
 -- Author:		<Author,,Name>
 -- Create date: <Create Date,,>
 -- Description:	<Description,,>
 -- =============================================
-CREATE PROCEDURE dbo.ssp_FactInternetSales_create_table 
+CREATE PROCEDURE [dbo].[ssp_FactInternetSales_create_table] 
 	@add_years INT
 AS
 BEGIN
@@ -60,7 +65,7 @@ BEGIN
 		SELECT [ProductKey]
 			  ,[OrderDateKey] + @add_years * 10000 as [OrderDateKey]
 			  ,[DueDateKey] + @add_years * 10000 as [DueDateKey]
-			  ,[ShipDateKey]
+			  ,[ShipDateKey] + @add_years * 10000 as [ShipDateKey]
 			  ,[CustomerKey]
 			  ,[PromotionKey]
 			  ,[CurrencyKey]
@@ -122,3 +127,5 @@ BEGIN
 
 END
 GO
+
+
